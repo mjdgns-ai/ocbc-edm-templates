@@ -1,7 +1,7 @@
 # OCBC EDM Component Library
 
 ## Global Rules
-- **Never distort images.** Always use `background-size: 100% auto` or `background-size: contain` for background images, and `width: Xpx; height: auto` for `<img>` tags. Never set both width and height to fixed values that don't match the image's natural aspect ratio.
+- **Never distort images.** For `<img>` tags, always set `height: auto` and only specify width. For masthead/hero background images, use `background-size: {container-width}px auto` (e.g. `700px auto` for desktop, `375px auto` for mobile) — this matches the container width and lets the height scale naturally from the image's aspect ratio. Never hardcode both width and height dimensions that don't match the image's natural ratio.
 
 ## Email Structure (top to bottom)
 
@@ -41,12 +41,12 @@ The masthead and intro card are implemented as a **single container** using a CS
 - The container has `background-color: #F7F8F9` so the area below the hero image blends with the page background
 
 ### Desktop (700px)
-- Outer container: `background-image` with `background-size: 100% auto`, `background-repeat: no-repeat`, `background-position: top center`
+- Outer container: `background-image` with `background-size: 700px auto`, `background-repeat: no-repeat`, `background-position: top center`
 - Container padding: `padding: 200px 45px 0 45px` — the 200px top padding positions the card so ~80px overlaps onto the hero
 - Intro card: w-610px, `background-color: #FFFFFF`, centered
 
 ### Mobile (375px)
-- Outer container: `background-image` with `background-size: 100% auto`
+- Outer container: `background-image` with `background-size: 375px auto`
 - Container padding: `padding: 140px 0 0 0` — the 140px top padding positions the card so ~56px overlaps onto the hero
 - Intro card: full width (375px), `background-color: #FFFFFF`
 
@@ -197,3 +197,33 @@ Two types:
   2. Contact info: Personal Banking hotline reference
   3. Marketing consent: Update preferences via OCBC Internet Banking
   4. Anti-phishing warning
+
+---
+
+## Reference Example: FX Online EDM
+
+The FX Online campaign (`fx-online-desktop.html`, `fx-online-mobile.html`, `fx-online-responsive.html`) demonstrates these components in use:
+
+| Section | Component Used | Notes |
+|---|---|---|
+| Preview Liner | Preview Liner | "Lock in live FX rates on OCBC Velocity..." |
+| Header | Header (OCBC only) | No FNAB lockup — "Business Banking" text right-aligned |
+| Masthead + Intro | Masthead + Intro (overlapping) | Hero image + headline "Need an edge? It is time to hedge." |
+| Benefits | Icons + Description (2x2 grid) | 4 benefits: Certainty, Control, Choice, Convenience — stacks on mobile |
+| Product Image | Large Image | FX platform screenshot, full section width |
+| How to Book (Velocity) | Numbered List | 3 steps with numbered circles |
+| OR Divider | OR Divider | Horizontal line with "OR" circle |
+| How to Book (App) | Numbered List | 3 steps for mobile app flow |
+| Currencies | Table (3-column grid) | Desktop: 3-col table; Mobile/responsive: inline bullet list |
+| Awards | Portfolio List (2-column) | 2 award cards side by side, stack on mobile |
+| CTA | CTA section | Red button + "Learn more:" URL pill |
+| Footer | Footer | Standard legal footer for Business Banking |
+
+### Responsive Version Notes
+The responsive file (`fx-online-responsive.html`) uses a single `@media (max-width: 480px)` block with these key breakpoint behaviors:
+- `.email-container` → `max-width: 375px`
+- `.masthead-intro-container` → `background-size: 375px auto`, `padding-top: 140px`
+- `.benefit-row` / `.benefit-cell` → `display: block; width: 100%` (stacks vertically)
+- `.currency-grid` → `display: none` (hidden, replaced by `.currency-inline`)
+- `.awards-row` / `.award-cell` → `display: block; width: 100%`
+- `.cta-label-cell` / `.cta-pill-cell` → `display: block; text-align: center`
