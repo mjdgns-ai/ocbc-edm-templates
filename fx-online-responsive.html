@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>OCBC FX Contract Booking</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    /* Reset */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    body { margin: 0; padding: 0; width: 100% !important; height: 100% !important; background-color: #F7F8F9; }
+    a { color: #484848; text-decoration: underline; }
+
+    @font-face {
+      font-family: 'Geomanist';
+      src: url('https://www.ocbc.com/iwov-resources/sg/ocbc/personal/fonts/geomanist-regular-webfont.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* ============================================ */
+    /* MOBILE RESPONSIVE STYLES                     */
+    /* ============================================ */
+    @media only screen and (max-width: 480px) {
+
+      /* Force all fixed-width tables to be fluid */
+      .email-container,
+      .header-table,
+      .masthead-table,
+      .intro-outer,
+      .content-wrapper,
+      .footer-table {
+        width: 100% !important;
+        max-width: 375px !important;
+      }
+
+      /* Header: shorter, smaller logo */
+      .header-table {
+        height: 67px !important;
+      }
+      .brand-band {
+        width: 4px !important;
+      }
+      .header-logo img {
+        width: 71px !important;
+        height: 19px !important;
+      }
+      .header-lockup {
+        font-size: 11px !important;
+      }
+
+      /* Masthead+Intro overlap: adjust for mobile */
+      .masthead-intro-container {
+        background-size: 100% auto !important;
+      }
+      .masthead-intro-padding {
+        padding-top: 140px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .intro-card {
+        width: 100% !important;
+      }
+
+      /* Headline: smaller */
+      .headline {
+        font-size: 26px !important;
+        line-height: 28px !important;
+      }
+
+      /* Content wrapper: remove outer side padding */
+      .content-padding {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* Footer: tighter padding */
+      .footer-padding {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+      }
+
+      /* Benefits: stack 2x2 grid into single column */
+      .benefit-row {
+        display: block !important;
+        width: 100% !important;
+      }
+      .benefit-cell {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 0 20px 0 !important;
+        text-align: center !important;
+      }
+      .benefit-cell:last-child {
+        padding-bottom: 0 !important;
+      }
+      .benefit-inner {
+        width: 100% !important;
+      }
+      .benefit-inner tr {
+        display: block !important;
+        width: 100% !important;
+      }
+      .benefit-icon {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0 0 10px 0 !important;
+      }
+      .benefit-text {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+      }
+
+      /* Product image: fluid */
+      .product-img {
+        width: 100% !important;
+        max-width: 315px !important;
+      }
+
+      /* Currency grid: hide 3-col, show inline list */
+      .currency-grid {
+        display: none !important;
+      }
+      .currency-inline {
+        display: block !important;
+      }
+
+      /* Awards: stack into single column */
+      .awards-row {
+        display: block !important;
+        width: 100% !important;
+      }
+      .award-cell {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 0 15px 0 !important;
+      }
+      .award-cell:last-child {
+        padding-bottom: 0 !important;
+      }
+
+      /* CTA URL pill: stack label and pill */
+      .cta-label-cell {
+        display: block !important;
+        text-align: center !important;
+        padding: 0 0 8px 0 !important;
+      }
+      .cta-pill-cell {
+        display: block !important;
+        text-align: center !important;
+      }
+      .pill-text {
+        font-size: 14px !important;
+      }
+
+      /* Numbered list: tighter gap on mobile */
+      .step-text {
+        padding-left: 20px !important;
+      }
+    }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#F7F8F9; font-family:Arial, Helvetica, sans-serif;">
+
+<!-- Wrapper -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F7F8F9;">
+<tr><td align="center">
+
+<!-- ============================================ -->
+<!-- PREVIEW LINER -->
+<!-- ============================================ -->
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" class="email-container" style="background-color:#FFFFFF;">
+<tr>
+  <td style="padding:10px 30px; font-family:Arial, sans-serif; font-size:10px; line-height:normal; color:#484848;">
+    Lock in live FX rates on OCBC Velocity &mdash; available 24/7, Monday to Sunday.
+  </td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<!-- HEADER -->
+<!-- ============================================ -->
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" class="header-table" style="background-color:#FFFFFF; height:98px;">
+<tr>
+  <!-- Red brand band -->
+  <td width="7" class="brand-band" style="background-color:#E30613; width:7px;"></td>
+  <!-- Logo area -->
+  <td class="header-logo" style="padding-left:20px; vertical-align:middle;">
+    <a href="https://www.ocbc.com/business-banking" target="_blank">
+      <img src="https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/logo_ocbc.png" alt="OCBC" width="123" height="33" style="display:block;" />
+    </a>
+  </td>
+  <td style="text-align:right; padding-right:30px; vertical-align:middle;">
+    <span class="header-lockup" style="font-family:Arial, sans-serif; font-size:13px; color:#667C88; font-weight:bold; letter-spacing:0.5px;">Business Banking</span>
+  </td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<!-- MASTHEAD + INTRO CARD (overlapping) -->
+<!-- ============================================ -->
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" class="email-container masthead-intro-container" style="background-image:url('https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/fx-online/KV@2x.png'); background-size:100% auto; background-repeat:no-repeat; background-position:top center; background-color:#F7F8F9;">
+<tr>
+  <td align="center" class="masthead-intro-padding" style="padding:200px 45px 0 45px;">
+    <!-- Intro card overlaps into masthead area -->
+    <table role="presentation" width="610" cellpadding="0" cellspacing="0" border="0" class="intro-card" style="background-color:#FFFFFF;" align="center">
+    <tr>
+      <td style="padding:30px; text-align:center;">
+        <!-- Headline -->
+        <h1 class="headline" style="margin:0 0 20px 0; font-family:Arial, sans-serif; font-size:36px; line-height:38px; font-weight:bold; color:#484848;">
+          Need an edge?<br>It is time to hedge.
+        </h1>
+        <!-- Body -->
+        <p style="margin:0 0 25px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+          Say hello to live Foreign Exchange (FX) rates you can lock in on OCBC Velocity. Get real-time rates, book what works best for your business, and trade across 15 major currencies &mdash; all available 24 hours a day, Monday to Sunday.
+        </p>
+        <!-- CTA -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
+        <tr>
+          <td class="cta-label-cell" style="font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; padding-right:10px; vertical-align:middle;">
+            Book your FX rate now:
+          </td>
+          <td class="cta-pill-cell">
+            <a href="https://velocity.ocbc.com/login.html" target="_blank" style="text-decoration:none;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border:1px solid #CCCCCC; border-radius:15px; height:30px;">
+              <tr>
+                <td style="padding:0 12px; vertical-align:middle;">
+                  <span class="pill-text" style="font-family:'Geomanist', Arial, sans-serif; font-size:16px; color:#484848; vertical-align:middle;">velocity.ocbc.com</span>
+                </td>
+              </tr>
+              </table>
+            </a>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<!-- CONTENT + FOOTER WRAPPER -->
+<!-- ============================================ -->
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" class="content-wrapper">
+<tr>
+  <td class="content-padding" style="padding:30px 45px 0 45px;">
+
+    <!-- ======================================== -->
+    <!-- SECTION: BENEFITS WITH ICONS -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px;">
+        <!-- Eyebrow -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:50px; height:2px; background-color:#484848; font-size:0; line-height:0;">&nbsp;</td></tr></table>
+        <p style="margin:15px 0 20px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; font-weight:bold; color:#667C88; text-transform:uppercase; letter-spacing:3px;">
+          WHY BOOK YOUR FX RATES ONLINE
+        </p>
+        <!-- Body intro -->
+        <p style="margin:0 0 25px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+          Lock in live FX rates on OCBC Velocity and take control of your foreign exchange needs &mdash; whenever and wherever you are.
+        </p>
+        <!-- 4 Benefits - 2x2 grid (stacks on mobile) -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr class="benefit-row">
+          <!-- Benefit 1: Certainty -->
+          <td width="50%" class="benefit-cell" style="padding:0 10px 25px 0; vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="benefit-inner">
+            <tr>
+              <td class="benefit-icon" style="vertical-align:top; padding-right:15px;">
+                <img src="https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/fx-online/icon-certainty.png" alt="Certainty" width="80" height="80" style="display:block; margin:0 auto;" />
+              </td>
+              <td class="benefit-text" style="vertical-align:top;">
+                <p style="margin:0 0 5px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">Certainty</p>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">View FX rates in real time before you book.</p>
+              </td>
+            </tr>
+            </table>
+          </td>
+          <!-- Benefit 2: Control -->
+          <td width="50%" class="benefit-cell" style="padding:0 0 25px 10px; vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="benefit-inner">
+            <tr>
+              <td class="benefit-icon" style="vertical-align:top; padding-right:15px;">
+                <img src="https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/fx-online/icon-control.png" alt="Control" width="80" height="80" style="display:block; margin:0 auto;" />
+              </td>
+              <td class="benefit-text" style="vertical-align:top;">
+                <p style="margin:0 0 5px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">Control</p>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">Mitigate fluctuations and book rates that work best for your business.</p>
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="benefit-row">
+          <!-- Benefit 3: Choice -->
+          <td width="50%" class="benefit-cell" style="padding:0 10px 25px 0; vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="benefit-inner">
+            <tr>
+              <td class="benefit-icon" style="vertical-align:top; padding-right:15px;">
+                <img src="https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/fx-online/icon-choice.png" alt="Choice" width="80" height="80" style="display:block; margin:0 auto;" />
+              </td>
+              <td class="benefit-text" style="vertical-align:top;">
+                <p style="margin:0 0 5px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">Choice</p>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">Choose from 15 major currencies including USD, EUR, GBP, JPY and more.</p>
+              </td>
+            </tr>
+            </table>
+          </td>
+          <!-- Benefit 4: Convenience -->
+          <td width="50%" class="benefit-cell" style="padding:0 0 0 10px; vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="benefit-inner">
+            <tr>
+              <td class="benefit-icon" style="vertical-align:top; padding-right:15px;">
+                <img src="https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/fx-online/icon-convenience.png" alt="Convenience" width="80" height="80" style="display:block; margin:0 auto;" />
+              </td>
+              <td class="benefit-text" style="vertical-align:top;">
+                <p style="margin:0 0 5px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">Convenience</p>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">Book securely on OCBC Velocity or the OCBC Business app, 24/7.</p>
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- SECTION: LARGE IMAGE -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px;">
+        <!-- Eyebrow -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:50px; height:2px; background-color:#484848; font-size:0; line-height:0;">&nbsp;</td></tr></table>
+        <p style="margin:15px 0 20px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; font-weight:bold; color:#667C88; text-transform:uppercase; letter-spacing:3px;">
+          FX CONTRACT BOOKING
+        </p>
+        <p style="margin:0 0 20px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+          With OCBC Velocity, you can book FX contracts online in just a few clicks. Lock in live rates across 15 major currencies, and use your contracts seamlessly for international transfers.
+        </p>
+        <!-- Product Image -->
+        <img src="https://www.ocbc.com/iwov-resources/sg/ocbc/business/img/fx-online/img-940x500.jpg" alt="OCBC FX Online Platform" width="550" class="product-img" style="display:block; width:550px; height:auto; margin:0 auto;" />
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- SECTION: HOW TO BOOK FX - VELOCITY -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px;">
+        <!-- Eyebrow -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:50px; height:2px; background-color:#484848; font-size:0; line-height:0;">&nbsp;</td></tr></table>
+        <p style="margin:15px 0 20px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; font-weight:bold; color:#667C88; text-transform:uppercase; letter-spacing:3px;">
+          GET STARTED ON OCBC VELOCITY
+        </p>
+        <p style="margin:0 0 25px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">
+          How to book an FX contract
+        </p>
+
+        <!-- Step 1 -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:30px;">
+        <tr>
+          <td width="40" style="vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="width:40px; height:40px; border:2px solid #E6E4DF; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:22px; line-height:28px; font-weight:bold; color:#484848;">
+                1
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td class="step-text" style="padding-left:30px; vertical-align:top; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+            Log in to <a href="https://velocity.ocbc.com/login.html" target="_blank" style="color:#E30613;">OCBC Velocity</a>, select <strong>&ldquo;FX &amp; Treasury&rdquo;</strong> followed by <strong>&ldquo;Book FX Contract&rdquo;</strong>.
+          </td>
+        </tr>
+        </table>
+
+        <!-- Step 2 -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:30px;">
+        <tr>
+          <td width="40" style="vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="width:40px; height:40px; border:2px solid #E6E4DF; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:22px; line-height:28px; font-weight:bold; color:#484848;">
+                2
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td class="step-text" style="padding-left:30px; vertical-align:top; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+            Choose your currency pair and enter the amount, then select <strong>&ldquo;Get rate&rdquo;</strong> to view the live FX rate. Confirm the transaction to lock in the rate.
+          </td>
+        </tr>
+        </table>
+
+        <!-- Step 3 -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="40" style="vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="width:40px; height:40px; border:2px solid #E6E4DF; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:22px; line-height:28px; font-weight:bold; color:#484848;">
+                3
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td class="step-text" style="padding-left:30px; vertical-align:top; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+            Receive your confirmation instantly. View and manage your contracts under <strong>&ldquo;FX Trade History&rdquo;</strong>.
+          </td>
+        </tr>
+        </table>
+
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- OR DIVIDER -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:30px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="width:45%; height:1px; background-color:#EBEFF1; font-size:0; line-height:0;">&nbsp;</td>
+          <td style="width:10%; text-align:center; vertical-align:middle;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr>
+              <td style="width:40px; height:40px; background-color:#EAEAEA; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:14px; font-weight:bold; color:#999999;">
+                OR
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td style="width:45%; height:1px; background-color:#EBEFF1; font-size:0; line-height:0;">&nbsp;</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- SECTION: OCBC BUSINESS APP -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px;">
+        <!-- Eyebrow -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:50px; height:2px; background-color:#484848; font-size:0; line-height:0;">&nbsp;</td></tr></table>
+        <p style="margin:15px 0 20px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; font-weight:bold; color:#667C88; text-transform:uppercase; letter-spacing:3px;">
+          GET STARTED ON THE OCBC BUSINESS APP
+        </p>
+        <p style="margin:0 0 25px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">
+          How to book an FX contract on mobile
+        </p>
+
+        <!-- Step 1 -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:30px;">
+        <tr>
+          <td width="40" style="vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="width:40px; height:40px; border:2px solid #E6E4DF; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:22px; line-height:28px; font-weight:bold; color:#484848;">
+                1
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td class="step-text" style="padding-left:30px; vertical-align:top; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+            Log in to the OCBC Business app and select <strong>&ldquo;Book FX Contract&rdquo;</strong>.
+          </td>
+        </tr>
+        </table>
+
+        <!-- Step 2 -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:30px;">
+        <tr>
+          <td width="40" style="vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="width:40px; height:40px; border:2px solid #E6E4DF; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:22px; line-height:28px; font-weight:bold; color:#484848;">
+                2
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td class="step-text" style="padding-left:30px; vertical-align:top; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+            Enter your amount, select your currency pair and value date, then tap <strong>&ldquo;Get rate&rdquo;</strong> to view and lock in the live rate.
+          </td>
+        </tr>
+        </table>
+
+        <!-- Step 3 -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="40" style="vertical-align:top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="width:40px; height:40px; border:2px solid #E6E4DF; border-radius:20px; text-align:center; vertical-align:middle; font-family:Arial, sans-serif; font-size:22px; line-height:28px; font-weight:bold; color:#484848;">
+                3
+              </td>
+            </tr>
+            </table>
+          </td>
+          <td class="step-text" style="padding-left:30px; vertical-align:top; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+            Receive your confirmation and use the contract on the value date for your international transfer.
+          </td>
+        </tr>
+        </table>
+
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- SECTION: CURRENCIES -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px;">
+        <!-- Eyebrow -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:50px; height:2px; background-color:#484848; font-size:0; line-height:0;">&nbsp;</td></tr></table>
+        <p style="margin:15px 0 20px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; font-weight:bold; color:#667C88; text-transform:uppercase; letter-spacing:3px;">
+          SUPPORTED CURRENCIES
+        </p>
+        <p style="margin:0 0 20px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+          Choose from <strong>15 major currencies</strong> to meet your business needs:
+        </p>
+
+        <!-- Desktop: 3-column grid -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="currency-grid">
+        <tr>
+          <td width="33%" style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>USD</strong> &ndash; US Dollar</td>
+          <td width="33%" style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>EUR</strong> &ndash; Euro</td>
+          <td width="33%" style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>GBP</strong> &ndash; British Pound</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>AUD</strong> &ndash; Australian Dollar</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>JPY</strong> &ndash; Japanese Yen</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>HKD</strong> &ndash; Hong Kong Dollar</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>CNH</strong> &ndash; Chinese Yuan</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>CHF</strong> &ndash; Swiss Franc</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>NZD</strong> &ndash; New Zealand Dollar</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>CAD</strong> &ndash; Canadian Dollar</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>NOK</strong> &ndash; Norwegian Krone</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; border-bottom:1px solid #EBEFF1;"><strong>SEK</strong> &ndash; Swedish Krona</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;"><strong>DKK</strong> &ndash; Danish Krone</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;"><strong>SGD</strong> &ndash; Singapore Dollar</td>
+          <td style="padding:8px 5px; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;"><strong>ZAR</strong> &ndash; South African Rand</td>
+        </tr>
+        </table>
+
+        <!-- Mobile: inline list (hidden on desktop) -->
+        <p class="currency-inline" style="display:none; margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:24px; color:#484848;">
+          <strong>USD</strong> &bull; <strong>EUR</strong> &bull; <strong>GBP</strong> &bull; <strong>AUD</strong> &bull; <strong>JPY</strong> &bull; <strong>HKD</strong> &bull; <strong>CNH</strong> &bull; <strong>CHF</strong> &bull; <strong>NZD</strong> &bull; <strong>CAD</strong> &bull; <strong>NOK</strong> &bull; <strong>SEK</strong> &bull; <strong>DKK</strong> &bull; <strong>SGD</strong> &bull; <strong>ZAR</strong>
+        </p>
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- SECTION: AWARDS -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px;">
+        <!-- Eyebrow -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:50px; height:2px; background-color:#484848; font-size:0; line-height:0;">&nbsp;</td></tr></table>
+        <p style="margin:15px 0 20px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; font-weight:bold; color:#667C88; text-transform:uppercase; letter-spacing:3px;">
+          OUR AWARDS AND ACCOLADES
+        </p>
+        <p style="margin:0 0 20px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848;">
+          Our commitment to delivering the best FX experience has been recognised by the industry:
+        </p>
+        <!-- Award items -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr class="awards-row">
+          <!-- Award 1 -->
+          <td width="50%" class="award-cell" style="vertical-align:top; padding-right:15px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #EBEFF1; border-radius:4px; width:100%;">
+            <tr>
+              <td style="padding:20px; text-align:center;">
+                <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">Best FX Bank for Retail Clients</p>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#667C88;">Alpha Southeast Asia, 2022</p>
+              </td>
+            </tr>
+            </table>
+          </td>
+          <!-- Award 2 -->
+          <td width="50%" class="award-cell" style="vertical-align:top; padding-left:15px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #EBEFF1; border-radius:4px; width:100%;">
+            <tr>
+              <td style="padding:20px; text-align:center;">
+                <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">Best Online FX Platform in Southeast Asia</p>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#667C88;">Alpha Southeast Asia, 2022</p>
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+
+    <!-- ======================================== -->
+    <!-- SECTION: CTA -->
+    <!-- ======================================== -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; margin-bottom:30px;">
+    <tr>
+      <td style="padding:20px 30px 30px 30px; text-align:center;">
+        <p style="margin:0 0 15px 0; font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#484848;">
+          Ready to lock in live FX rates?
+        </p>
+        <!-- Primary CTA Button -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
+        <tr>
+          <td style="background-color:#E30613; border-radius:4px; padding:12px 35px;">
+            <a href="https://velocity.ocbc.com/login.html" target="_blank" style="font-family:Arial, sans-serif; font-size:14px; line-height:20px; font-weight:bold; color:#FFFFFF; text-decoration:none; display:inline-block;">
+              Book FX rate now
+            </a>
+          </td>
+        </tr>
+        </table>
+        <p style="margin:15px 0 0 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#667C88;">
+          Available to all OCBC Business Banking customers on OCBC Velocity.
+        </p>
+        <!-- Learn more link -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin-top:15px;">
+        <tr>
+          <td class="cta-label-cell" style="font-family:Arial, sans-serif; font-size:14px; line-height:20px; color:#484848; padding-right:10px; vertical-align:middle;">
+            Learn more:
+          </td>
+          <td class="cta-pill-cell">
+            <a href="https://www.ocbc.com/business-banking/fx-online" target="_blank" style="text-decoration:none;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border:1px solid #CCCCCC; border-radius:15px; height:30px;">
+              <tr>
+                <td style="padding:0 12px; vertical-align:middle;">
+                  <span class="pill-text" style="font-family:'Geomanist', Arial, sans-serif; font-size:16px; color:#484848; vertical-align:middle;">ocbc.com/business-banking/fx-online</span>
+                </td>
+              </tr>
+              </table>
+            </a>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+
+  </td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<!-- FOOTER -->
+<!-- ============================================ -->
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" class="footer-table" style="background-color:#FAFCFC;">
+<tr>
+  <td class="footer-padding" style="padding:30px 45px;">
+    <p style="margin:0 0 15px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#484848;">
+      Copyright 2024 Oversea-Chinese Banking Corporation Limited. Co. Reg. No.: 193200032W
+    </p>
+    <p style="margin:0 0 15px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#484848;">
+      For enquiries, please visit our website at <a href="https://www.ocbc.com/business-banking" target="_blank" style="color:#E30613;">ocbc.com/business-banking</a> &gt; Contact us, or call our Business Banking hotline at <strong>+65 6538 1111</strong>.
+    </p>
+    <p style="margin:0 0 15px 0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#484848;">
+      If you wish to update your mailing preferences or unsubscribe from marketing communications, please log in to <a href="https://velocity.ocbc.com/login.html" target="_blank" style="color:#E30613;">OCBC Velocity</a> to manage your settings.
+    </p>
+    <p style="margin:0; font-family:Arial, sans-serif; font-size:12px; line-height:20px; color:#484848;">
+      <strong>Important:</strong> OCBC Bank will never ask you to reveal your personal details, such as your account or login information, through e-mails. Please do not respond to such requests. If in doubt, call our Business Banking hotline at <strong>+65 6538 1111</strong>.
+    </p>
+  </td>
+</tr>
+</table>
+
+</td></tr>
+</table>
+<!-- End Wrapper -->
+
+</body>
+</html>
