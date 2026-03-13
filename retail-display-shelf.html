@@ -100,119 +100,45 @@
       background: #fafafa;
       border: 1px solid #e0e0e0;
       border-radius: 8px;
-      padding: 32px;
+      padding: 20px 10px;
       margin: 20px 0;
       text-align: center;
+      overflow-x: auto;
     }
-    .shelf-diagram {
-      display: inline-block;
-      position: relative;
-      width: 500px;
-      height: 440px;
+    .diagram-container svg {
+      max-width: 100%;
+      height: auto;
     }
-    .shelf-post {
-      position: absolute;
-      width: 6px;
-      background: #1a1a1a;
-      border-radius: 2px;
-    }
-    .shelf-post.left { left: 0; top: 0; height: 400px; }
-    .shelf-post.center { left: 247px; top: 0; height: 400px; }
-    .shelf-post.right { left: 494px; top: 0; height: 400px; }
-    .shelf-foot {
-      position: absolute;
-      bottom: 0;
-      width: 60px;
-      height: 6px;
-      background: #1a1a1a;
-      border-radius: 2px;
-    }
-    .shelf-foot.left { left: -27px; }
-    .shelf-foot.center { left: 220px; }
-    .shelf-foot.right { left: 467px; }
-    .shelf-rail {
-      position: absolute;
-      height: 4px;
-      background: #333;
-      border-radius: 1px;
-    }
-    .shelf-rail.top-left { left: 6px; top: 8px; width: 241px; }
-    .shelf-rail.top-right { left: 253px; top: 8px; width: 241px; }
-    .shelf-rail.bottom-left { left: 6px; top: 388px; width: 241px; }
-    .shelf-rail.bottom-right { left: 253px; top: 388px; width: 241px; }
-    .demo-shelf {
-      position: absolute;
-      left: 6px;
-      top: 40px;
-      width: 488px;
-      height: 24px;
-      background: #2a2a2a;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .pegboard-panel {
-      position: absolute;
-      left: 14px;
-      background: repeating-radial-gradient(circle, #bbb 1.5px, transparent 1.5px);
-      background-size: 18px 18px;
-      border: 1px solid #ccc;
-      border-radius: 2px;
-    }
-    .pegboard-panel.bay1-row1 { top: 80px; width: 225px; height: 130px; }
-    .pegboard-panel.bay2-row1 { left: 261px; top: 80px; width: 225px; height: 130px; }
-    .pegboard-panel.bay1-row2 { top: 218px; width: 225px; height: 130px; }
-    .pegboard-panel.bay2-row2 { left: 261px; top: 218px; width: 225px; height: 130px; }
-    .hook-row {
-      position: absolute;
-      display: flex;
-      gap: 40px;
-      justify-content: center;
-    }
-    .hook {
-      width: 3px;
-      height: 22px;
-      background: #666;
-      border-radius: 0 0 3px 3px;
-      position: relative;
-    }
-    .hook::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: -6px;
-      width: 15px;
-      height: 12px;
-      border: 2px solid #888;
-      border-top: none;
-      border-radius: 0 0 4px 4px;
-    }
-    .hook-row.r1 { left: 40px; top: 120px; width: 180px; }
-    .hook-row.r2 { left: 286px; top: 120px; width: 180px; }
-    .hook-row.r3 { left: 40px; top: 260px; width: 180px; }
-    .hook-row.r4 { left: 286px; top: 260px; width: 180px; }
-    .dim-label {
-      position: absolute;
-      font-size: 10px;
-      color: #999;
-      font-weight: 700;
-    }
-    .dim-label.width { bottom: -28px; left: 50%; transform: translateX(-50%); }
-    .dim-label.height { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); }
-    .dim-label.bay1 { bottom: -28px; left: 125px; transform: translateX(-50%); }
-    .dim-label.bay2 { bottom: -28px; left: 375px; transform: translateX(-50%); }
     .diagram-note {
       font-size: 12px;
       color: #888;
       margin-top: 16px;
       font-style: italic;
     }
+    .view-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+    }
+    .view-tab {
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #999;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .view-tab:hover { color: #333; }
+    .view-tab.active { color: #e30613; border-bottom-color: #e30613; }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
 
     /* Order table */
     .order-table {
@@ -466,55 +392,577 @@
     <!-- Visual Diagram -->
     <div class="section">
       <div class="section-title">Layout</div>
-      <h2>Front Elevation (one side shown)</h2>
-      <div class="diagram-container">
-        <div class="shelf-diagram">
-          <!-- Posts -->
-          <div class="shelf-post left"></div>
-          <div class="shelf-post center"></div>
-          <div class="shelf-post right"></div>
+      <h2>What Your Display Looks Like</h2>
 
-          <!-- Joining rails -->
-          <div class="shelf-rail top-left"></div>
-          <div class="shelf-rail top-right"></div>
-          <div class="shelf-rail bottom-left"></div>
-          <div class="shelf-rail bottom-right"></div>
-
-          <!-- Demo shelf at top -->
-          <div class="demo-shelf">Demo Shelf &mdash; 300mm deep</div>
-
-          <!-- Pegboard panels -->
-          <div class="pegboard-panel bay1-row1"></div>
-          <div class="pegboard-panel bay2-row1"></div>
-          <div class="pegboard-panel bay1-row2"></div>
-          <div class="pegboard-panel bay2-row2"></div>
-
-          <!-- Hooks on pegboard -->
-          <div class="hook-row r1">
-            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
-          </div>
-          <div class="hook-row r2">
-            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
-          </div>
-          <div class="hook-row r3">
-            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
-          </div>
-          <div class="hook-row r4">
-            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
-          </div>
-
-          <!-- Feet -->
-          <div class="shelf-foot left"></div>
-          <div class="shelf-foot center"></div>
-          <div class="shelf-foot right"></div>
-
-          <!-- Dimension labels -->
-          <div class="dim-label bay1">1200mm Bay 1</div>
-          <div class="dim-label bay2">1200mm Bay 2</div>
-          <div class="dim-label height">1800mm</div>
-        </div>
-        <p class="diagram-note">Both sides are identical &mdash; demo shelf on top, pegboard with hanging hooks below. Hooks secured with magnetic locks.</p>
+      <div class="view-tabs">
+        <button class="view-tab active" onclick="showView('front')">Front View</button>
+        <button class="view-tab" onclick="showView('side')">Side View</button>
+        <button class="view-tab" onclick="showView('top')">Top-Down View</button>
+        <button class="view-tab" onclick="showView('exploded')">Exploded Parts</button>
       </div>
+
+      <!-- FRONT VIEW -->
+      <div class="view-panel active" id="view-front">
+        <div class="diagram-container">
+          <svg viewBox="0 0 820 620" xmlns="http://www.w3.org/2000/svg" style="max-width:820px;">
+            <defs>
+              <pattern id="pegHoles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="3" fill="#999"/>
+              </pattern>
+              <marker id="arrowL" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#e30613"/></marker>
+              <marker id="arrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#e30613"/></marker>
+            </defs>
+
+            <!-- Floor line -->
+            <line x1="60" y1="540" x2="720" y2="540" stroke="#ccc" stroke-width="1" stroke-dasharray="6,4"/>
+            <text x="390" y="558" text-anchor="middle" font-size="10" fill="#bbb" font-family="Arial">FLOOR</text>
+
+            <!-- 3 POSTS (vertical black bars) -->
+            <rect x="118" y="40" width="8" height="490" rx="2" fill="#2a2a2a"/>
+            <rect x="366" y="40" width="8" height="490" rx="2" fill="#2a2a2a"/>
+            <rect x="614" y="40" width="8" height="490" rx="2" fill="#2a2a2a"/>
+
+            <!-- Post slot marks (the holes for accessories) -->
+            <g fill="#555" opacity="0.4">
+              <rect x="120" y="80" width="4" height="2"/><rect x="120" y="100" width="4" height="2"/>
+              <rect x="120" y="120" width="4" height="2"/><rect x="120" y="140" width="4" height="2"/>
+              <rect x="368" y="80" width="4" height="2"/><rect x="368" y="100" width="4" height="2"/>
+              <rect x="368" y="120" width="4" height="2"/><rect x="368" y="140" width="4" height="2"/>
+              <rect x="616" y="80" width="4" height="2"/><rect x="616" y="100" width="4" height="2"/>
+              <rect x="616" y="120" width="4" height="2"/><rect x="616" y="140" width="4" height="2"/>
+            </g>
+
+            <!-- TOP CAPPING (decorative top strip) -->
+            <rect x="118" y="36" width="256" height="8" rx="2" fill="#3a3a3a"/>
+            <rect x="366" y="36" width="256" height="8" rx="2" fill="#3a3a3a"/>
+
+            <!-- JOINING RAILS (horizontal bars connecting posts near top) -->
+            <rect x="126" y="55" width="240" height="10" rx="2" fill="#444"/>
+            <rect x="374" y="55" width="240" height="10" rx="2" fill="#444"/>
+
+            <!-- BASE JOINING RAILS (horizontal bars connecting posts near bottom) -->
+            <rect x="126" y="500" width="240" height="16" rx="2" fill="#444"/>
+            <rect x="374" y="500" width="240" height="16" rx="2" fill="#444"/>
+
+            <!-- DEMO SHELVES (flat platform near top) -->
+            <rect x="126" y="90" width="240" height="8" rx="1" fill="#2a2a2a"/>
+            <rect x="374" y="90" width="240" height="8" rx="1" fill="#2a2a2a"/>
+            <!-- Shelf brackets (little L-shapes) -->
+            <path d="M128,98 L128,108 L140,108" stroke="#555" stroke-width="2" fill="none"/>
+            <path d="M362,98 L362,108 L350,108" stroke="#555" stroke-width="2" fill="none"/>
+            <path d="M376,98 L376,108 L388,108" stroke="#555" stroke-width="2" fill="none"/>
+            <path d="M610,98 L610,108 L598,108" stroke="#555" stroke-width="2" fill="none"/>
+            <!-- Shelf lips (small front edge) -->
+            <rect x="126" y="86" width="240" height="4" rx="1" fill="#1a1a1a"/>
+            <rect x="374" y="86" width="240" height="4" rx="1" fill="#1a1a1a"/>
+
+            <!-- Demo items on shelf (simple product shapes) -->
+            <rect x="160" y="60" width="40" height="30" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="220" y="68" width="35" height="22" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="280" y="62" width="45" height="28" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="410" y="65" width="38" height="25" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="470" y="58" width="42" height="32" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="540" y="66" width="36" height="24" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+
+            <!-- PEGBOARD PANELS (perforated grid areas) -->
+            <!-- Bay 1: two 560mm panels + one 240mm panel -->
+            <rect x="130" y="115" width="232" height="160" rx="2" fill="url(#pegHoles)" stroke="#bbb"/>
+            <rect x="130" y="280" width="232" height="160" rx="2" fill="url(#pegHoles)" stroke="#bbb"/>
+            <rect x="130" y="445" width="232" height="52" rx="2" fill="url(#pegHoles)" stroke="#bbb"/>
+            <!-- Bay 2 -->
+            <rect x="378" y="115" width="232" height="160" rx="2" fill="url(#pegHoles)" stroke="#bbb"/>
+            <rect x="378" y="280" width="232" height="160" rx="2" fill="url(#pegHoles)" stroke="#bbb"/>
+            <rect x="378" y="445" width="232" height="52" rx="2" fill="url(#pegHoles)" stroke="#bbb"/>
+
+            <!-- HOOKS with hanging boxes -->
+            <!-- Bay 1 Row 1 -->
+            <g transform="translate(165, 140)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#dceefb" stroke="#a0c4e8"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#5a8ab0">BOX</text>
+            </g>
+            <g transform="translate(220, 140)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#dceefb" stroke="#a0c4e8"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#5a8ab0">BOX</text>
+            </g>
+            <g transform="translate(275, 140)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#dceefb" stroke="#a0c4e8"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#5a8ab0">BOX</text>
+            </g>
+            <!-- Bay 1 Row 2 -->
+            <g transform="translate(165, 305)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#fde8e8" stroke="#e8a0a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#b05a5a">BOX</text>
+            </g>
+            <g transform="translate(220, 305)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#fde8e8" stroke="#e8a0a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#b05a5a">BOX</text>
+            </g>
+            <g transform="translate(275, 305)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#fde8e8" stroke="#e8a0a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#b05a5a">BOX</text>
+            </g>
+            <!-- Bay 2 hooks -->
+            <g transform="translate(415, 140)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#e8f5e8" stroke="#a0c8a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#5a805a">BOX</text>
+            </g>
+            <g transform="translate(470, 140)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#e8f5e8" stroke="#a0c8a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#5a805a">BOX</text>
+            </g>
+            <g transform="translate(525, 140)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#e8f5e8" stroke="#a0c8a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#5a805a">BOX</text>
+            </g>
+            <g transform="translate(415, 305)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#f5f0e8" stroke="#c8b8a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#806a5a">BOX</text>
+            </g>
+            <g transform="translate(470, 305)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#f5f0e8" stroke="#c8b8a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#806a5a">BOX</text>
+            </g>
+            <g transform="translate(525, 305)">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="0" r="3" fill="#e30613" opacity="0.6"/>
+              <rect x="8" y="4" width="28" height="38" rx="3" fill="#f5f0e8" stroke="#c8b8a0"/>
+              <text x="22" y="28" text-anchor="middle" font-size="7" fill="#806a5a">BOX</text>
+            </g>
+
+            <!-- METAL SKIRTS (panels at floor level) -->
+            <rect x="126" y="520" width="240" height="18" rx="2" fill="#3a3a3a"/>
+            <rect x="374" y="520" width="240" height="18" rx="2" fill="#3a3a3a"/>
+
+            <!-- FEET (L-shaped base supports) -->
+            <rect x="90" y="530" width="64" height="8" rx="2" fill="#2a2a2a"/>
+            <rect x="338" y="530" width="64" height="8" rx="2" fill="#2a2a2a"/>
+            <rect x="586" y="530" width="64" height="8" rx="2" fill="#2a2a2a"/>
+
+            <!-- ===== LABELS WITH CALLOUT LINES ===== -->
+
+            <!-- Top Capping label -->
+            <line x1="246" y1="38" x2="246" y2="15" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="246" y1="15" x2="30" y2="15" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="246" cy="38" r="3" fill="#e30613"/>
+            <text x="28" y="19" text-anchor="end" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">TOP CAPPING</text>
+            <text x="28" y="30" text-anchor="end" font-size="9" fill="#888" font-family="Arial">Clean finish for top edge</text>
+
+            <!-- Post label -->
+            <line x1="126" y1="200" x2="60" y2="200" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="126" cy="200" r="3" fill="#e30613"/>
+            <text x="58" y="195" text-anchor="end" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">POST</text>
+            <text x="58" y="206" text-anchor="end" font-size="9" fill="#888" font-family="Arial">1800mm tall</text>
+            <text x="58" y="217" text-anchor="end" font-size="9" fill="#888" font-family="Arial">Slots every 40mm</text>
+
+            <!-- Joining Rail label -->
+            <line x1="246" y1="60" x2="745" y2="60" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="246" cy="60" r="3" fill="#e30613"/>
+            <text x="747" y="55" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">JOINING RAIL</text>
+            <text x="747" y="67" font-size="9" fill="#888" font-family="Arial">Connects posts at top</text>
+
+            <!-- Demo Shelf label -->
+            <line x1="366" y1="90" x2="745" y2="90" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="366" cy="90" r="3" fill="#e30613"/>
+            <text x="747" y="86" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">DEMO SHELF</text>
+            <text x="747" y="98" font-size="9" fill="#888" font-family="Arial">300mm deep, 30kg capacity</text>
+            <text x="747" y="109" font-size="9" fill="#888" font-family="Arial">With front lip to hold items</text>
+
+            <!-- Pegboard label -->
+            <line x1="362" y1="195" x2="745" y2="195" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="362" cy="195" r="3" fill="#e30613"/>
+            <text x="747" y="190" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">PEGBOARD PANELS</text>
+            <text x="747" y="202" font-size="9" fill="#888" font-family="Arial">Metal panels with holes for</text>
+            <text x="747" y="213" font-size="9" fill="#888" font-family="Arial">inserting hooks anywhere</text>
+
+            <!-- Hook + Box label -->
+            <line x1="305" y1="160" x2="745" y2="265" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="305" cy="160" r="3" fill="#e30613"/>
+            <text x="747" y="260" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">HOOK + HANGING BOX</text>
+            <text x="747" y="272" font-size="9" fill="#888" font-family="Arial">Hook inserts into pegboard</text>
+            <text x="747" y="283" font-size="9" fill="#888" font-family="Arial">Box hangs from hook</text>
+
+            <!-- Magnetic lock label -->
+            <line x1="185" y1="140" x2="30" y2="320" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="185" cy="140" r="3" fill="#e30613"/>
+            <rect x="0" y="308" width="110" height="44" rx="4" fill="#fef2f2" stroke="#e30613" stroke-width="1"/>
+            <text x="55" y="324" text-anchor="middle" font-size="10" font-weight="700" fill="#e30613" font-family="Arial">MAGNETIC LOCK</text>
+            <text x="55" y="336" text-anchor="middle" font-size="8" fill="#888" font-family="Arial">Red dot = lock stop</text>
+            <text x="55" y="346" text-anchor="middle" font-size="8" fill="#888" font-family="Arial">on hook tip</text>
+
+            <!-- Base Joining Rail label -->
+            <line x1="494" y1="508" x2="745" y2="460" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="494" cy="508" r="3" fill="#e30613"/>
+            <text x="747" y="455" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">BASE JOINING RAIL</text>
+            <text x="747" y="467" font-size="9" fill="#888" font-family="Arial">Connects posts at bottom</text>
+
+            <!-- Skirt label -->
+            <line x1="246" y1="529" x2="30" y2="460" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="246" cy="529" r="3" fill="#e30613"/>
+            <text x="28" y="455" text-anchor="end" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">METAL SKIRT</text>
+            <text x="28" y="467" text-anchor="end" font-size="9" fill="#888" font-family="Arial">Covers gap at floor</text>
+
+            <!-- Foot label -->
+            <line x1="122" y1="534" x2="30" y2="534" stroke="#e30613" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="122" cy="534" r="3" fill="#e30613"/>
+            <text x="28" y="530" text-anchor="end" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">FOOT</text>
+            <text x="28" y="541" text-anchor="end" font-size="9" fill="#888" font-family="Arial">400mm, keeps unit stable</text>
+
+            <!-- DIMENSION ARROWS -->
+            <!-- Bay 1 width -->
+            <line x1="126" y1="575" x2="366" y2="575" stroke="#e30613" stroke-width="1" marker-start="url(#arrowL)" marker-end="url(#arrowR)"/>
+            <text x="246" y="590" text-anchor="middle" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">1200mm (Bay 1)</text>
+            <!-- Bay 2 width -->
+            <line x1="374" y1="575" x2="614" y2="575" stroke="#e30613" stroke-width="1" marker-start="url(#arrowL)" marker-end="url(#arrowR)"/>
+            <text x="494" y="590" text-anchor="middle" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">1200mm (Bay 2)</text>
+            <!-- Total width -->
+            <line x1="118" y1="608" x2="622" y2="608" stroke="#333" stroke-width="1.5" marker-start="url(#arrowL)" marker-end="url(#arrowR)"/>
+            <text x="370" y="618" text-anchor="middle" font-size="12" font-weight="700" fill="#333" font-family="Arial">2,400mm total width</text>
+
+            <!-- Height -->
+            <line x1="85" y1="40" x2="85" y2="538" stroke="#333" stroke-width="1.5" marker-start="url(#arrowL)" marker-end="url(#arrowR)"/>
+            <text x="80" y="295" text-anchor="middle" font-size="12" font-weight="700" fill="#333" font-family="Arial" transform="rotate(-90, 80, 295)">1,800mm height</text>
+          </svg>
+          <p class="diagram-note">Front view showing one side. The back side is identical with its own shelves and pegboard panels.</p>
+        </div>
+      </div>
+
+      <!-- SIDE VIEW -->
+      <div class="view-panel" id="view-side">
+        <div class="diagram-container">
+          <svg viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;">
+            <defs>
+              <marker id="arrowL2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#e30613"/></marker>
+              <marker id="arrowR2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#e30613"/></marker>
+            </defs>
+
+            <!-- Floor -->
+            <line x1="50" y1="500" x2="450" y2="500" stroke="#ccc" stroke-width="1" stroke-dasharray="6,4"/>
+            <text x="250" y="518" text-anchor="middle" font-size="10" fill="#bbb" font-family="Arial">FLOOR</text>
+
+            <!-- Post (side view - thin) -->
+            <rect x="235" y="30" width="30" height="460" rx="2" fill="#2a2a2a"/>
+
+            <!-- Top capping -->
+            <rect x="220" y="24" width="60" height="10" rx="3" fill="#3a3a3a"/>
+
+            <!-- Front shelf + bracket (Side A) -->
+            <rect x="140" y="85" width="100" height="6" rx="1" fill="#2a2a2a"/>
+            <path d="M235,91 L235,105 L220,105" stroke="#555" stroke-width="2" fill="none"/>
+            <rect x="140" y="81" width="100" height="4" rx="1" fill="#1a1a1a"/>
+            <!-- Demo items on front -->
+            <rect x="160" y="55" width="30" height="30" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="200" y="60" width="25" height="25" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+
+            <!-- Back shelf + bracket (Side B) -->
+            <rect x="260" y="85" width="100" height="6" rx="1" fill="#2a2a2a"/>
+            <path d="M265,91 L265,105 L280,105" stroke="#555" stroke-width="2" fill="none"/>
+            <rect x="260" y="81" width="100" height="4" rx="1" fill="#1a1a1a"/>
+            <!-- Demo items on back -->
+            <rect x="280" y="58" width="28" height="27" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+            <rect x="320" y="62" width="25" height="23" rx="4" fill="#e8e8e8" stroke="#ccc"/>
+
+            <!-- Front pegboard -->
+            <rect x="144" y="115" width="88" height="370" rx="2" fill="#e0e0e0" stroke="#bbb"/>
+            <text x="188" y="300" text-anchor="middle" font-size="9" fill="#999" font-family="Arial" transform="rotate(-90, 188, 300)">PEGBOARD (Side A)</text>
+
+            <!-- Back pegboard -->
+            <rect x="268" y="115" width="88" height="370" rx="2" fill="#e0e0e0" stroke="#bbb"/>
+            <text x="312" y="300" text-anchor="middle" font-size="9" fill="#999" font-family="Arial" transform="rotate(-90, 312, 300)">PEGBOARD (Side B)</text>
+
+            <!-- Front hooks + boxes -->
+            <g transform="translate(144, 150)">
+              <line x1="0" y1="0" x2="-25" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <rect x="-40" y="-15" width="22" height="32" rx="3" fill="#dceefb" stroke="#a0c4e8"/>
+            </g>
+            <g transform="translate(144, 250)">
+              <line x1="0" y1="0" x2="-25" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <rect x="-40" y="-15" width="22" height="32" rx="3" fill="#fde8e8" stroke="#e8a0a0"/>
+            </g>
+            <g transform="translate(144, 350)">
+              <line x1="0" y1="0" x2="-25" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <rect x="-40" y="-15" width="22" height="32" rx="3" fill="#e8f5e8" stroke="#a0c8a0"/>
+            </g>
+
+            <!-- Back hooks + boxes -->
+            <g transform="translate(356, 150)">
+              <line x1="0" y1="0" x2="25" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <rect x="18" y="-15" width="22" height="32" rx="3" fill="#f5f0e8" stroke="#c8b8a0"/>
+            </g>
+            <g transform="translate(356, 250)">
+              <line x1="0" y1="0" x2="25" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <rect x="18" y="-15" width="22" height="32" rx="3" fill="#dceefb" stroke="#a0c4e8"/>
+            </g>
+            <g transform="translate(356, 350)">
+              <line x1="0" y1="0" x2="25" y2="0" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <rect x="18" y="-15" width="22" height="32" rx="3" fill="#fde8e8" stroke="#e8a0a0"/>
+            </g>
+
+            <!-- Base joining rail (side view) -->
+            <rect x="230" y="472" width="40" height="16" rx="2" fill="#444"/>
+
+            <!-- Skirts -->
+            <rect x="140" y="488" width="96" height="10" rx="2" fill="#3a3a3a"/>
+            <rect x="264" y="488" width="96" height="10" rx="2" fill="#3a3a3a"/>
+
+            <!-- Feet -->
+            <rect x="120" y="494" width="140" height="6" rx="2" fill="#2a2a2a"/>
+            <rect x="240" y="494" width="140" height="6" rx="2" fill="#2a2a2a"/>
+
+            <!-- LABELS -->
+            <text x="50" y="90" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">SIDE A</text>
+            <text x="50" y="104" font-size="9" fill="#888" font-family="Arial">Shelf + Pegboard</text>
+
+            <text x="450" y="90" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">SIDE B</text>
+            <text x="450" y="104" text-anchor="end" font-size="9" fill="#888" font-family="Arial">Shelf + Pegboard</text>
+
+            <text x="250" y="545" text-anchor="middle" font-size="11" font-weight="700" fill="#333" font-family="Arial">Double-sided: products accessible from both sides</text>
+
+            <!-- Depth dimension -->
+            <line x1="104" y1="90" x2="396" y2="90" stroke="#e30613" stroke-width="1" marker-start="url(#arrowL2)" marker-end="url(#arrowR2)"/>
+            <rect x="200" y="78" width="100" height="16" rx="3" fill="#fff"/>
+            <text x="250" y="90" text-anchor="middle" font-size="10" font-weight="700" fill="#e30613" font-family="Arial">~600mm depth</text>
+          </svg>
+          <p class="diagram-note">Side profile showing both sides of the display with shelves and pegboard hooks facing outward.</p>
+        </div>
+      </div>
+
+      <!-- TOP-DOWN VIEW -->
+      <div class="view-panel" id="view-top">
+        <div class="diagram-container">
+          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;">
+            <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#333" font-family="Arial">Looking down from above (bird's eye view)</text>
+
+            <!-- Outer frame -->
+            <rect x="80" y="50" width="440" height="180" rx="3" fill="none" stroke="#2a2a2a" stroke-width="3"/>
+
+            <!-- Posts (circles from above) -->
+            <circle cx="80" cy="140" r="10" fill="#2a2a2a"/>
+            <circle cx="300" cy="140" r="10" fill="#2a2a2a"/>
+            <circle cx="520" cy="140" r="10" fill="#2a2a2a"/>
+            <text x="80" y="144" text-anchor="middle" font-size="7" fill="#fff" font-family="Arial">P</text>
+            <text x="300" y="144" text-anchor="middle" font-size="7" fill="#fff" font-family="Arial">P</text>
+            <text x="520" y="144" text-anchor="middle" font-size="7" fill="#fff" font-family="Arial">P</text>
+
+            <!-- Front shelves (top edge visible) -->
+            <rect x="83" y="52" width="214" height="30" rx="2" fill="#3a3a3a"/>
+            <rect x="303" y="52" width="214" height="30" rx="2" fill="#3a3a3a"/>
+            <text x="190" y="72" text-anchor="middle" font-size="9" fill="#fff" font-family="Arial">Demo Shelf (Bay 1)</text>
+            <text x="410" y="72" text-anchor="middle" font-size="9" fill="#fff" font-family="Arial">Demo Shelf (Bay 2)</text>
+
+            <!-- Back shelves (top edge visible) -->
+            <rect x="83" y="198" width="214" height="30" rx="2" fill="#3a3a3a"/>
+            <rect x="303" y="198" width="214" height="30" rx="2" fill="#3a3a3a"/>
+            <text x="190" y="218" text-anchor="middle" font-size="9" fill="#fff" font-family="Arial">Demo Shelf (Bay 1)</text>
+            <text x="410" y="218" text-anchor="middle" font-size="9" fill="#fff" font-family="Arial">Demo Shelf (Bay 2)</text>
+
+            <!-- Center area (pegboard zone) -->
+            <rect x="83" y="85" width="214" height="110" rx="2" fill="#eee" stroke="#ccc"/>
+            <rect x="303" y="85" width="214" height="110" rx="2" fill="#eee" stroke="#ccc"/>
+            <text x="190" y="145" text-anchor="middle" font-size="10" fill="#999" font-family="Arial">Pegboard Area</text>
+            <text x="410" y="145" text-anchor="middle" font-size="10" fill="#999" font-family="Arial">Pegboard Area</text>
+
+            <!-- Feet -->
+            <rect x="50" y="115" width="60" height="50" rx="3" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="80" y="168" text-anchor="middle" font-size="8" fill="#888" font-family="Arial">Foot</text>
+            <rect x="270" y="115" width="60" height="50" rx="3" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="300" y="168" text-anchor="middle" font-size="8" fill="#888" font-family="Arial">Foot</text>
+            <rect x="490" y="115" width="60" height="50" rx="3" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="520" y="168" text-anchor="middle" font-size="8" fill="#888" font-family="Arial">Foot</text>
+
+            <!-- Side labels -->
+            <text x="300" y="46" text-anchor="middle" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">SIDE A (customer-facing)</text>
+            <text x="300" y="252" text-anchor="middle" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">SIDE B (customer-facing)</text>
+
+            <!-- Depth label -->
+            <text x="555" y="115" font-size="9" fill="#888" font-family="Arial">300mm</text>
+            <text x="555" y="125" font-size="9" fill="#888" font-family="Arial">shelf</text>
+            <text x="555" y="160" font-size="9" fill="#888" font-family="Arial">300mm</text>
+            <text x="555" y="170" font-size="9" fill="#888" font-family="Arial">shelf</text>
+
+            <!-- Footprint -->
+            <text x="300" y="295" text-anchor="middle" font-size="12" font-weight="700" fill="#333" font-family="Arial">Floor footprint: 2,400mm wide x ~600mm deep</text>
+          </svg>
+          <p class="diagram-note">Top-down view showing both customer-facing sides. Each side has its own shelves and pegboard hooks.</p>
+        </div>
+      </div>
+
+      <!-- EXPLODED PARTS VIEW -->
+      <div class="view-panel" id="view-exploded">
+        <div class="diagram-container">
+          <svg viewBox="0 0 780 700" xmlns="http://www.w3.org/2000/svg" style="max-width:780px;">
+            <text x="390" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#333" font-family="Arial">Exploded View &mdash; All Parts Labeled</text>
+            <text x="390" y="42" text-anchor="middle" font-size="11" fill="#888" font-family="Arial">This shows every component separated so you can see what each one is</text>
+
+            <!-- Row 1: Top Capping -->
+            <rect x="160" y="65" width="200" height="14" rx="3" fill="#3a3a3a"/>
+            <rect x="380" y="65" width="200" height="14" rx="3" fill="#3a3a3a"/>
+            <text x="60" y="77" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">TOP CAPPING x2</text>
+            <text x="600" y="77" font-size="10" fill="#888" font-family="Arial">Decorative cap that sits on</text>
+            <text x="600" y="89" font-size="10" fill="#888" font-family="Arial">top of the posts</text>
+
+            <!-- Arrow down -->
+            <line x1="390" y1="82" x2="390" y2="100" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Row 2: Joining Rails -->
+            <rect x="160" y="105" width="200" height="12" rx="2" fill="#555"/>
+            <rect x="380" y="105" width="200" height="12" rx="2" fill="#555"/>
+            <text x="60" y="116" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">JOINING RAILS x2</text>
+            <text x="600" y="112" font-size="10" fill="#888" font-family="Arial">Horizontal bar that locks</text>
+            <text x="600" y="124" font-size="10" fill="#888" font-family="Arial">into posts near the top</text>
+
+            <line x1="390" y1="120" x2="390" y2="138" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Row 3: Posts -->
+            <rect x="155" y="143" width="10" height="120" rx="2" fill="#2a2a2a"/>
+            <rect x="370" y="143" width="10" height="120" rx="2" fill="#2a2a2a"/>
+            <rect x="575" y="143" width="10" height="120" rx="2" fill="#2a2a2a"/>
+            <!-- Slot marks -->
+            <g fill="#888">
+              <rect x="157" y="155" width="6" height="2"/><rect x="157" y="170" width="6" height="2"/>
+              <rect x="157" y="185" width="6" height="2"/><rect x="157" y="200" width="6" height="2"/>
+              <rect x="157" y="215" width="6" height="2"/><rect x="157" y="230" width="6" height="2"/>
+              <rect x="157" y="245" width="6" height="2"/>
+            </g>
+            <text x="60" y="200" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">POSTS x3</text>
+            <text x="60" y="213" text-anchor="end" font-size="10" fill="#888" font-family="Arial">The vertical uprights</text>
+            <text x="60" y="226" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Slots = where shelves</text>
+            <text x="60" y="239" text-anchor="end" font-size="10" fill="#888" font-family="Arial">&amp; panels hook in</text>
+            <text x="600" y="200" font-size="10" fill="#888" font-family="Arial">Double-sided: slots on</text>
+            <text x="600" y="213" font-size="10" fill="#888" font-family="Arial">both front &amp; back</text>
+
+            <line x1="390" y1="266" x2="390" y2="284" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Row 4: Demo Shelves + Brackets -->
+            <rect x="160" y="290" width="200" height="8" rx="1" fill="#2a2a2a"/>
+            <rect x="380" y="290" width="200" height="8" rx="1" fill="#2a2a2a"/>
+            <!-- Brackets underneath -->
+            <path d="M170,298 L170,310 L185,310" stroke="#888" stroke-width="2" fill="none"/>
+            <path d="M350,298 L350,310 L335,310" stroke="#888" stroke-width="2" fill="none"/>
+            <path d="M390,298 L390,310 L405,310" stroke="#888" stroke-width="2" fill="none"/>
+            <path d="M570,298 L570,310 L555,310" stroke="#888" stroke-width="2" fill="none"/>
+            <!-- Lips -->
+            <rect x="160" y="286" width="200" height="4" rx="1" fill="#1a1a1a"/>
+            <rect x="380" y="286" width="200" height="4" rx="1" fill="#1a1a1a"/>
+            <text x="60" y="296" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">SHELVES x4</text>
+            <text x="60" y="309" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Flat metal platform for</text>
+            <text x="60" y="322" text-anchor="end" font-size="10" fill="#888" font-family="Arial">demo/feature products</text>
+            <text x="600" y="296" font-size="10" fill="#888" font-family="Arial">2 per side (4 total)</text>
+            <text x="600" y="309" font-size="10" fill="#888" font-family="Arial">+ brackets to hook into posts</text>
+            <text x="600" y="322" font-size="10" fill="#888" font-family="Arial">+ front lip to stop items falling</text>
+
+            <line x1="390" y1="318" x2="390" y2="346" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Row 5: Pegboard Panels -->
+            <rect x="160" y="352" width="200" height="100" rx="2" fill="#e8e8e8" stroke="#bbb"/>
+            <rect x="380" y="352" width="200" height="100" rx="2" fill="#e8e8e8" stroke="#bbb"/>
+            <!-- Holes pattern -->
+            <g fill="#bbb">
+              <circle cx="180" cy="370" r="3"/><circle cx="200" cy="370" r="3"/><circle cx="220" cy="370" r="3"/><circle cx="240" cy="370" r="3"/><circle cx="260" cy="370" r="3"/><circle cx="280" cy="370" r="3"/><circle cx="300" cy="370" r="3"/><circle cx="320" cy="370" r="3"/><circle cx="340" cy="370" r="3"/>
+              <circle cx="180" cy="390" r="3"/><circle cx="200" cy="390" r="3"/><circle cx="220" cy="390" r="3"/><circle cx="240" cy="390" r="3"/><circle cx="260" cy="390" r="3"/><circle cx="280" cy="390" r="3"/><circle cx="300" cy="390" r="3"/><circle cx="320" cy="390" r="3"/><circle cx="340" cy="390" r="3"/>
+              <circle cx="180" cy="410" r="3"/><circle cx="200" cy="410" r="3"/><circle cx="220" cy="410" r="3"/><circle cx="240" cy="410" r="3"/><circle cx="260" cy="410" r="3"/><circle cx="280" cy="410" r="3"/><circle cx="300" cy="410" r="3"/><circle cx="320" cy="410" r="3"/><circle cx="340" cy="410" r="3"/>
+              <circle cx="180" cy="430" r="3"/><circle cx="200" cy="430" r="3"/><circle cx="220" cy="430" r="3"/><circle cx="240" cy="430" r="3"/><circle cx="260" cy="430" r="3"/><circle cx="280" cy="430" r="3"/><circle cx="300" cy="430" r="3"/><circle cx="320" cy="430" r="3"/><circle cx="340" cy="430" r="3"/>
+              <circle cx="400" cy="370" r="3"/><circle cx="420" cy="370" r="3"/><circle cx="440" cy="370" r="3"/><circle cx="460" cy="370" r="3"/><circle cx="480" cy="370" r="3"/><circle cx="500" cy="370" r="3"/><circle cx="520" cy="370" r="3"/><circle cx="540" cy="370" r="3"/><circle cx="560" cy="370" r="3"/>
+              <circle cx="400" cy="390" r="3"/><circle cx="420" cy="390" r="3"/><circle cx="440" cy="390" r="3"/><circle cx="460" cy="390" r="3"/><circle cx="480" cy="390" r="3"/><circle cx="500" cy="390" r="3"/><circle cx="520" cy="390" r="3"/><circle cx="540" cy="390" r="3"/><circle cx="560" cy="390" r="3"/>
+              <circle cx="400" cy="410" r="3"/><circle cx="420" cy="410" r="3"/><circle cx="440" cy="410" r="3"/><circle cx="460" cy="410" r="3"/><circle cx="480" cy="410" r="3"/><circle cx="500" cy="410" r="3"/><circle cx="520" cy="410" r="3"/><circle cx="540" cy="410" r="3"/><circle cx="560" cy="410" r="3"/>
+              <circle cx="400" cy="430" r="3"/><circle cx="420" cy="430" r="3"/><circle cx="440" cy="430" r="3"/><circle cx="460" cy="430" r="3"/><circle cx="480" cy="430" r="3"/><circle cx="500" cy="430" r="3"/><circle cx="520" cy="430" r="3"/><circle cx="540" cy="430" r="3"/><circle cx="560" cy="430" r="3"/>
+            </g>
+            <text x="60" y="395" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">PEGBOARD x12</text>
+            <text x="60" y="408" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Metal panels full of holes</text>
+            <text x="60" y="421" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Hooks plug into any hole</text>
+            <text x="60" y="434" text-anchor="end" font-size="10" fill="#888" font-family="Arial">to hang your boxed products</text>
+            <text x="600" y="395" font-size="10" fill="#888" font-family="Arial">8 large (560mm) +</text>
+            <text x="600" y="408" font-size="10" fill="#888" font-family="Arial">4 small (240mm)</text>
+            <text x="600" y="421" font-size="10" fill="#888" font-family="Arial">Fills area below shelves</text>
+
+            <line x1="390" y1="455" x2="390" y2="478" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Row 6: Hooks -->
+            <g transform="translate(180, 485)">
+              <line x1="0" y1="10" x2="30" y2="10" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="30" cy="10" r="4" fill="#e30613"/>
+              <rect x="15" y="16" width="24" height="34" rx="3" fill="#dceefb" stroke="#a0c4e8"/>
+              <text x="27" y="38" text-anchor="middle" font-size="8" fill="#5a8ab0">BOX</text>
+            </g>
+            <g transform="translate(280, 485)">
+              <line x1="0" y1="10" x2="30" y2="10" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="30" cy="10" r="4" fill="#e30613"/>
+              <rect x="15" y="16" width="24" height="34" rx="3" fill="#e8f5e8" stroke="#a0c8a0"/>
+              <text x="27" y="38" text-anchor="middle" font-size="8" fill="#5a805a">BOX</text>
+            </g>
+            <g transform="translate(380, 485)">
+              <line x1="0" y1="10" x2="30" y2="10" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="30" cy="10" r="4" fill="#e30613"/>
+              <rect x="15" y="16" width="24" height="34" rx="3" fill="#fde8e8" stroke="#e8a0a0"/>
+              <text x="27" y="38" text-anchor="middle" font-size="8" fill="#b05a5a">BOX</text>
+            </g>
+            <g transform="translate(480, 485)">
+              <line x1="0" y1="10" x2="30" y2="10" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="30" cy="10" r="4" fill="#e30613"/>
+              <rect x="15" y="16" width="24" height="34" rx="3" fill="#f5f0e8" stroke="#c8b8a0"/>
+              <text x="27" y="38" text-anchor="middle" font-size="8" fill="#806a5a">BOX</text>
+            </g>
+            <text x="60" y="510" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">HOOKS + BOXES</text>
+            <text x="60" y="523" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Hook goes into pegboard</text>
+            <text x="60" y="536" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Box hangs on hook</text>
+            <text x="60" y="549" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Red dot = magnetic lock</text>
+            <text x="600" y="510" font-size="10" fill="#888" font-family="Arial">Order from Retailers'</text>
+            <text x="600" y="523" font-size="10" fill="#888" font-family="Arial">Catalogue (separate)</text>
+
+            <line x1="390" y1="542" x2="390" y2="558" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Row 7: Base rail + Skirts + Feet -->
+            <rect x="160" y="565" width="200" height="14" rx="2" fill="#555"/>
+            <rect x="380" y="565" width="200" height="14" rx="2" fill="#555"/>
+            <rect x="160" y="582" width="200" height="10" rx="2" fill="#3a3a3a"/>
+            <rect x="380" y="582" width="200" height="10" rx="2" fill="#3a3a3a"/>
+            <rect x="140" y="595" width="100" height="7" rx="2" fill="#2a2a2a"/>
+            <rect x="310" y="595" width="100" height="7" rx="2" fill="#2a2a2a"/>
+            <rect x="500" y="595" width="100" height="7" rx="2" fill="#2a2a2a"/>
+            <text x="60" y="580" text-anchor="end" font-size="12" font-weight="700" fill="#e30613" font-family="Arial">BASE</text>
+            <text x="60" y="593" text-anchor="end" font-size="10" fill="#888" font-family="Arial">Rail + Skirt + Feet</text>
+            <text x="600" y="573" font-size="10" fill="#888" font-family="Arial">Base rail connects posts</text>
+            <text x="600" y="586" font-size="10" fill="#888" font-family="Arial">Skirt hides the gap</text>
+            <text x="600" y="599" font-size="10" fill="#888" font-family="Arial">Feet keep it stable on floor</text>
+
+            <!-- Legend box -->
+            <rect x="160" y="630" width="420" height="60" rx="6" fill="#fef2f2" stroke="#e30613" stroke-width="1"/>
+            <text x="370" y="650" text-anchor="middle" font-size="11" font-weight="700" fill="#e30613" font-family="Arial">HOW IT ALL FITS TOGETHER</text>
+            <text x="370" y="668" text-anchor="middle" font-size="10" fill="#666" font-family="Arial">Posts are the backbone. Everything hooks, slides, or locks into the posts.</text>
+            <text x="370" y="681" text-anchor="middle" font-size="10" fill="#666" font-family="Arial">No drilling needed. All parts are modular and repositionable.</text>
+          </svg>
+        </div>
+      </div>
+
+      <script>
+        function showView(view) {
+          document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+          document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+          document.getElementById('view-' + view).classList.add('active');
+          event.target.classList.add('active');
+        }
+      </script>
     </div>
 
     <!-- Parts Order Table -->
