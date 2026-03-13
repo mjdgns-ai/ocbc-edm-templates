@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAXe Retail Display Shelf — Order Specification</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+    }
+    .header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 40px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .header .badge {
+      display: inline-block;
+      background: #e30613;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 3px;
+      margin-top: 12px;
+    }
+    .summary-bar {
+      display: flex;
+      background: #2a2a2a;
+      color: #fff;
+    }
+    .summary-bar .stat {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+      border-right: 1px solid #444;
+    }
+    .summary-bar .stat:last-child { border-right: none; }
+    .summary-bar .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #e30613;
+    }
+    .summary-bar .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-top: 4px;
+    }
+    .section {
+      padding: 32px 40px;
+      border-bottom: 1px solid #eee;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #667c88;
+      margin-bottom: 4px;
+    }
+    .section-title::before {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: #484848;
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    /* Visual diagram */
+    .diagram-container {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 32px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .shelf-diagram {
+      display: inline-block;
+      position: relative;
+      width: 500px;
+      height: 440px;
+    }
+    .shelf-post {
+      position: absolute;
+      width: 6px;
+      background: #1a1a1a;
+      border-radius: 2px;
+    }
+    .shelf-post.left { left: 0; top: 0; height: 400px; }
+    .shelf-post.center { left: 247px; top: 0; height: 400px; }
+    .shelf-post.right { left: 494px; top: 0; height: 400px; }
+    .shelf-foot {
+      position: absolute;
+      bottom: 0;
+      width: 60px;
+      height: 6px;
+      background: #1a1a1a;
+      border-radius: 2px;
+    }
+    .shelf-foot.left { left: -27px; }
+    .shelf-foot.center { left: 220px; }
+    .shelf-foot.right { left: 467px; }
+    .shelf-rail {
+      position: absolute;
+      height: 4px;
+      background: #333;
+      border-radius: 1px;
+    }
+    .shelf-rail.top-left { left: 6px; top: 8px; width: 241px; }
+    .shelf-rail.top-right { left: 253px; top: 8px; width: 241px; }
+    .shelf-rail.bottom-left { left: 6px; top: 388px; width: 241px; }
+    .shelf-rail.bottom-right { left: 253px; top: 388px; width: 241px; }
+    .demo-shelf {
+      position: absolute;
+      left: 6px;
+      top: 40px;
+      width: 488px;
+      height: 24px;
+      background: #2a2a2a;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .pegboard-panel {
+      position: absolute;
+      left: 14px;
+      background: repeating-radial-gradient(circle, #bbb 1.5px, transparent 1.5px);
+      background-size: 18px 18px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+    .pegboard-panel.bay1-row1 { top: 80px; width: 225px; height: 130px; }
+    .pegboard-panel.bay2-row1 { left: 261px; top: 80px; width: 225px; height: 130px; }
+    .pegboard-panel.bay1-row2 { top: 218px; width: 225px; height: 130px; }
+    .pegboard-panel.bay2-row2 { left: 261px; top: 218px; width: 225px; height: 130px; }
+    .hook-row {
+      position: absolute;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+    .hook {
+      width: 3px;
+      height: 22px;
+      background: #666;
+      border-radius: 0 0 3px 3px;
+      position: relative;
+    }
+    .hook::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: -6px;
+      width: 15px;
+      height: 12px;
+      border: 2px solid #888;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+    }
+    .hook-row.r1 { left: 40px; top: 120px; width: 180px; }
+    .hook-row.r2 { left: 286px; top: 120px; width: 180px; }
+    .hook-row.r3 { left: 40px; top: 260px; width: 180px; }
+    .hook-row.r4 { left: 286px; top: 260px; width: 180px; }
+    .dim-label {
+      position: absolute;
+      font-size: 10px;
+      color: #999;
+      font-weight: 700;
+    }
+    .dim-label.width { bottom: -28px; left: 50%; transform: translateX(-50%); }
+    .dim-label.height { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); }
+    .dim-label.bay1 { bottom: -28px; left: 125px; transform: translateX(-50%); }
+    .dim-label.bay2 { bottom: -28px; left: 375px; transform: translateX(-50%); }
+    .diagram-note {
+      font-size: 12px;
+      color: #888;
+      margin-top: 16px;
+      font-style: italic;
+    }
+
+    /* Order table */
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .order-table thead th {
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .order-table thead th:last-child { text-align: center; }
+    .order-table thead th:nth-child(4) { text-align: center; }
+    .order-table tbody tr { border-bottom: 1px solid #eee; }
+    .order-table tbody tr:hover { background: #fafafa; }
+    .order-table tbody td {
+      padding: 14px 16px;
+      font-size: 13px;
+      vertical-align: top;
+    }
+    .order-table tbody td:last-child { text-align: center; font-weight: 700; }
+    .order-table tbody td:nth-child(4) { text-align: center; }
+    .order-table .code {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: #e30613;
+      background: #fef2f2;
+      padding: 2px 8px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+    .order-table .item-name {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .order-table .item-desc {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+    .order-table .finish-tag {
+      display: inline-block;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+    }
+    .category-row td {
+      background: #f8f8f8;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #667c88 !important;
+      padding: 10px 16px !important;
+    }
+
+    /* Config overview */
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .config-card {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .config-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .config-card p {
+      font-size: 12px;
+      color: #666;
+    }
+    .config-card .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e30613;
+      margin-bottom: 4px;
+    }
+
+    /* Notes */
+    .note-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .note-box h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #92400e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .note-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .note-box li {
+      font-size: 13px;
+      color: #78350f;
+      margin-bottom: 4px;
+    }
+
+    .tools-note {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .tools-note h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #075985;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .tools-note li {
+      font-size: 13px;
+      color: #0c4a6e;
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      background: #1a1a1a;
+      color: #999;
+      padding: 32px 40px;
+      font-size: 12px;
+    }
+    .footer a {
+      color: #e30613;
+      text-decoration: none;
+    }
+
+    /* Assembly steps */
+    .steps {
+      counter-reset: step;
+      margin: 16px 0;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .step-number {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: #e30613;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .step-content h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>MAXe Freestanding Display Shelf</h1>
+      <p>Retail display configuration &mdash; double-sided, 2-bay, black sand finish</p>
+      <span class="badge">Order Specification Sheet</span>
+    </div>
+
+    <!-- Summary Bar -->
+    <div class="summary-bar">
+      <div class="stat">
+        <div class="stat-value">2,400mm</div>
+        <div class="stat-label">Total Width</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1,800mm</div>
+        <div class="stat-label">Height</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2 Bays</div>
+        <div class="stat-label">Configuration</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Double</div>
+        <div class="stat-label">Sided</div>
+      </div>
+    </div>
+
+    <!-- Configuration Overview -->
+    <div class="section">
+      <div class="section-title">Configuration</div>
+      <h2>Display Overview</h2>
+      <div class="config-grid">
+        <div class="config-card">
+          <h3>Top Shelf</h3>
+          <div class="value">Demo Display</div>
+          <p>30mm metal shelves (300mm deep) on both sides at the top for product demonstrations and feature items. Load capacity: 30kg per shelf.</p>
+        </div>
+        <div class="config-card">
+          <h3>Below Shelves</h3>
+          <div class="value">Hanging Boxes</div>
+          <p>Pegboard metal panels fill the area below the demo shelf. Use pegboard hooks to hang boxed products, secured with magnetic locks on hook tips.</p>
+        </div>
+        <div class="config-card">
+          <h3>Finish</h3>
+          <div class="value">Black Sand (BKS)</div>
+          <p>Premium black sand powder coat across all structural and panel components for a bold, contemporary retail look.</p>
+        </div>
+        <div class="config-card">
+          <h3>System</h3>
+          <div class="value">MAXe</div>
+          <p>Modular shop fitting system by Shop for Shops. All components are off-the-shelf and designed for quick assembly.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Diagram -->
+    <div class="section">
+      <div class="section-title">Layout</div>
+      <h2>Front Elevation (one side shown)</h2>
+      <div class="diagram-container">
+        <div class="shelf-diagram">
+          <!-- Posts -->
+          <div class="shelf-post left"></div>
+          <div class="shelf-post center"></div>
+          <div class="shelf-post right"></div>
+
+          <!-- Joining rails -->
+          <div class="shelf-rail top-left"></div>
+          <div class="shelf-rail top-right"></div>
+          <div class="shelf-rail bottom-left"></div>
+          <div class="shelf-rail bottom-right"></div>
+
+          <!-- Demo shelf at top -->
+          <div class="demo-shelf">Demo Shelf &mdash; 300mm deep</div>
+
+          <!-- Pegboard panels -->
+          <div class="pegboard-panel bay1-row1"></div>
+          <div class="pegboard-panel bay2-row1"></div>
+          <div class="pegboard-panel bay1-row2"></div>
+          <div class="pegboard-panel bay2-row2"></div>
+
+          <!-- Hooks on pegboard -->
+          <div class="hook-row r1">
+            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
+          </div>
+          <div class="hook-row r2">
+            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
+          </div>
+          <div class="hook-row r3">
+            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
+          </div>
+          <div class="hook-row r4">
+            <div class="hook"></div><div class="hook"></div><div class="hook"></div><div class="hook"></div>
+          </div>
+
+          <!-- Feet -->
+          <div class="shelf-foot left"></div>
+          <div class="shelf-foot center"></div>
+          <div class="shelf-foot right"></div>
+
+          <!-- Dimension labels -->
+          <div class="dim-label bay1">1200mm Bay 1</div>
+          <div class="dim-label bay2">1200mm Bay 2</div>
+          <div class="dim-label height">1800mm</div>
+        </div>
+        <p class="diagram-note">Both sides are identical &mdash; demo shelf on top, pegboard with hanging hooks below. Hooks secured with magnetic locks.</p>
+      </div>
+    </div>
+
+    <!-- Parts Order Table -->
+    <div class="section">
+      <div class="section-title">Order</div>
+      <h2>Parts List &mdash; Complete Bill of Materials</h2>
+
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Product Code</th>
+            <th>Item</th>
+            <th>Finish</th>
+            <th>Ref Page</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- STRUCTURAL -->
+          <tr class="category-row"><td colspan="5">Structural &mdash; Posts</td></tr>
+          <tr>
+            <td><span class="code">E1518.4</span></td>
+            <td>
+              <div class="item-name">Double Sided Post &mdash; 1800mm</div>
+              <div class="item-desc">32W &times; 51mm D. M10 thread at base. 40mm vertical pitch for shelf positioning.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>47</td>
+            <td>3</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Structural &mdash; Joining Rails</td></tr>
+          <tr>
+            <td><span class="code">E2112.4</span></td>
+            <td>
+              <div class="item-name">Joining Rail &mdash; 1200mm Bay</div>
+              <div class="item-desc">51H &times; 25.4mm D. Connects posts at top. Use turn-lock tool to install.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>57</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><span class="code">E2612.4</span></td>
+            <td>
+              <div class="item-name">Base Joining Rail &mdash; 1200mm Bay</div>
+              <div class="item-desc">120H &times; 25.4mm D. Connects posts at base. Use turn-lock tool to install.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>57</td>
+            <td>2</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Structural &mdash; Feet</td></tr>
+          <tr>
+            <td><span class="code">E2004.4</span></td>
+            <td>
+              <div class="item-name">Foot &mdash; 400mm</div>
+              <div class="item-desc">25.4W &times; 120mm H. M10 thread. Use turn-lock tool &amp; soft mallet to install.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>58</td>
+            <td>6</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Panels &mdash; Pegboard (for hanging hooks)</td></tr>
+          <tr>
+            <td><span class="code">E8612.4</span></td>
+            <td>
+              <div class="item-name">Pegboard Metal Panel &mdash; 560mm H, 1200mm Bay</div>
+              <div class="item-desc">25.4 &times; 23.3mm perforated pattern. Accepts standard pegboard hooks.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>76</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td><span class="code">E8712.4</span></td>
+            <td>
+              <div class="item-name">Pegboard Metal Panel &mdash; 240mm H, 1200mm Bay</div>
+              <div class="item-desc">25.4 &times; 23.3mm perforated pattern. Fills remaining height below 560mm panels.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>76</td>
+            <td>4</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Shelving &mdash; Demo Display (Top)</td></tr>
+          <tr>
+            <td><span class="code">E7312.4</span></td>
+            <td>
+              <div class="item-name">30mm Metal Shelf &mdash; 300mm D, 1200mm Bay</div>
+              <div class="item-desc">Metal shelf for demo/feature items. Brackets sold separately. Load capacity: 30kg.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>110</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td><span class="code">E6003</span></td>
+            <td>
+              <div class="item-name">30mm Shelf Bracket Set &mdash; 300mm D</div>
+              <div class="item-desc">One set per shelf. Hooks into post slots. Load capacity: 30kg.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>110</td>
+            <td>4</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Shelf Accessories &mdash; Lips &amp; Fences</td></tr>
+          <tr>
+            <td><span class="code">E7009</span></td>
+            <td>
+              <div class="item-name">30mm Shelf Lip &mdash; 52mm H, 1200mm Bay</div>
+              <div class="item-desc">Front lip to prevent demo items from sliding off the shelf. Attaches to front edge.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>116</td>
+            <td>4</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Finishing &mdash; Post Covers &amp; Skirts</td></tr>
+          <tr>
+            <td><span class="code">E8812</span></td>
+            <td>
+              <div class="item-name">Metal Skirt &mdash; 1200mm Bay</div>
+              <div class="item-desc">Closes gap under base rail for a clean, finished look at floor level.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>100</td>
+            <td>4</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Finishing &mdash; Top Capping</td></tr>
+          <tr>
+            <td><span class="code">E9812.4</span></td>
+            <td>
+              <div class="item-name">Top Capping &mdash; 1200mm Bay</div>
+              <div class="item-desc">Finishing cap for top of double-sided display. Clean top edge.</div>
+            </td>
+            <td><span class="finish-tag">BKS</span></td>
+            <td>98</td>
+            <td>2</td>
+          </tr>
+
+          <tr class="category-row"><td colspan="5">Installation Tools</td></tr>
+          <tr>
+            <td><span class="code">E0001.4</span></td>
+            <td>
+              <div class="item-name">Turn-Lock Tool</div>
+              <div class="item-desc">T30 Torx tool for joining rails, base rails &amp; feet installation.</div>
+            </td>
+            <td>&mdash;</td>
+            <td>44</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><span class="code">E0005.4</span></td>
+            <td>
+              <div class="item-name">Soft Faced Mallet</div>
+              <div class="item-desc">For easing feet into position on posts.</div>
+            </td>
+            <td>&mdash;</td>
+            <td>44</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note-box">
+        <h4>Hooks &amp; Magnetic Locks &mdash; Order Separately</h4>
+        <ul>
+          <li><strong>Pegboard hooks</strong> for hanging boxed products are available in the <em>Retailers' Catalogue</em> (separate from this MAXe Manual). Visit <strong>shopforshops.com</strong> and search for pegboard hooks in various lengths (100mm, 150mm, 200mm, 250mm, 300mm).</li>
+          <li><strong>Magnetic security locks</strong> for hook tips are specialist security accessories. Contact Shop for Shops directly at <strong>1300 11 SHOP</strong> or your security hardware supplier for compatible magnetic lock-stop fittings.</li>
+          <li>Hook quantity depends on your product spacing &mdash; typical layout is 6-8 hooks per 560mm panel row per bay.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Assembly Guide -->
+    <div class="section">
+      <div class="section-title">Assembly</div>
+      <h2>Assembly Sequence</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Install Feet on Posts</h4>
+            <p>Slide 400mm feet onto the base of each of the 3 double-sided posts using the turn-lock tool and soft mallet. Each post gets 2 feet (front and back).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Connect Posts with Joining Rails</h4>
+            <p>Attach 2 joining rails (top) and 2 base joining rails (bottom) between the 3 posts to form the 2-bay frame. Use the turn-lock tool.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Install Pegboard Panels</h4>
+            <p>Slide pegboard panels into post slots on both sides: two 560mm-high panels and one 240mm-high panel per bay per side (filling below the demo shelf area). Total: 8 large + 4 small panels.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Mount Demo Shelves</h4>
+            <p>Hook the 30mm shelf bracket sets into the post slots near the top (both sides) and place the metal shelves on the brackets. Attach shelf lips to the front edge to prevent items from sliding off.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h4>Add Finishing Touches</h4>
+            <p>Install metal skirts at floor level, top capping on the post tops, and arrange your pegboard hooks across the panels at desired spacing.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h4>Attach Magnetic Lock-Stops</h4>
+            <p>Fit magnetic security locks to hook tips to prevent unauthorized removal of hanging boxed products.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-note">
+        <h4>Tools Required</h4>
+        <ul>
+          <li>Turn-lock tool (E0001.4) &mdash; included in order</li>
+          <li>Soft faced mallet (E0005.4) &mdash; included in order</li>
+          <li>Spirit level (bring your own)</li>
+          <li>No drilling required &mdash; this is a freestanding unit</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ordering -->
+    <div class="section">
+      <div class="section-title">How to Order</div>
+      <h2>Place Your Order</h2>
+      <div class="config-grid">
+        <div class="config-card">
+          <h3>Online</h3>
+          <p>Visit <strong>shopforshops.com</strong> and enter each product code into the search bar to add items to your cart.</p>
+        </div>
+        <div class="config-card">
+          <h3>Phone</h3>
+          <p>Call <strong>1300 11 SHOP</strong> and provide this parts list. Ask about quantity discounts &mdash; you can save up to 50%.</p>
+        </div>
+        <div class="config-card">
+          <h3>Email</h3>
+          <p>Send this spec sheet to <strong>sales@shopforshops.com</strong> for a complete quote including delivery.</p>
+        </div>
+        <div class="config-card">
+          <h3>In-Store</h3>
+          <p>Visit a Shop for Shops location with this document. Staff can pull stock and arrange same-day pickup.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>MAXe Manual 02 by Shop for Shops &mdash; <a href="https://shopforshops.com">shopforshops.com</a> &mdash; <a href="https://maxe.com.au">maxe.com.au</a></p>
+      <p style="margin-top: 8px;">Prices not included &mdash; visit shopforshops.com or call 1300 11 SHOP for current pricing. All product codes reference MAXe Manual 02.</p>
+    </div>
+
+  </div>
+</body>
+</html>
